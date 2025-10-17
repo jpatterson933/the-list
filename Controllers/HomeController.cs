@@ -57,7 +57,9 @@ public class HomeController : Controller
             },
             External = new List<string>
             {
-                "Vineyard - Mexico"
+                "Vineyard - Mexico",
+                "Germany",
+                "Japan"
             }
         };
 
