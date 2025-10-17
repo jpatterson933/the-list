@@ -54,7 +54,6 @@ public class HomeController : Controller
                 "Girl and the goat",
                 "Destroyer - breakfast",
                 "Best chilaquiles in LA!?",
-                "Butternut squash w/ dancing"
             },
             External = new List<string>
             {
