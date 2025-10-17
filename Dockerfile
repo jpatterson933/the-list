@@ -11,6 +11,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:9.0
 WORKDIR /app
 COPY --from=build /app/out .
 
-ENV ASPNETCORE_URLS=http://+:$PORT
-
-ENTRYPOINT ["dotnet", "LaAdventuresList.dll"]
+ENTRYPOINT ["sh", "-c", "dotnet LaAdventuresList.dll --urls http://0.0.0.0:${PORT}"]
