@@ -1,0 +1,142 @@
+@{
+    ViewData["Title"] = "Entrada Secreta";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css">
+    <style>
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .login-box {
+            background: white;
+            padding: 50px 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            border: 3px solid var(--tierra-naranja);
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .login-title {
+            color: var(--rojo-espanol);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .login-subtitle {
+            color: var(--tierra-naranja);
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .password-input {
+            padding: 15px 20px;
+            border: 2px solid var(--tierra-naranja);
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-family: 'Georgia', serif;
+            transition: all 0.3s ease;
+        }
+
+        .password-input:focus {
+            outline: none;
+            border-color: var(--rojo-espanol);
+            box-shadow: 0 0 10px rgba(196, 30, 58, 0.3);
+        }
+
+        .login-button {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--rojo-espanol) 0%, var(--tierra-naranja) 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            font-family: 'Georgia', serif;
+        }
+
+        .login-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(196, 30, 58, 0.4);
+        }
+
+        .login-button:active {
+            transform: translateY(0);
+        }
+
+        .error-message {
+            color: var(--rojo-espanol);
+            background: #ffe4e1;
+            padding: 15px;
+            border-radius: 8px;
+            border: 2px solid var(--rojo-espanol);
+            font-weight: bold;
+            animation: shake 0.5s;
+        }
+
+        @@keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            75% { transform: translateX(10px); }
+        }
+
+        .lock-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="lock-icon">🔐</div>
+            <h1 class="login-title">Entrada Secreta</h1>
+            <p class="login-subtitle">Por favor, ingresa la contraseña</p>
+
+            @if (ViewBag.Error)
+            {
+                <div class="error-message">
+                    ❌ Contraseña incorrecta. Inténtalo de nuevo.
+                </div>
+            }
+
+            <form class="login-form" method="post" action="/auth/authenticate">
+                <input
+                    type="password"
+                    name="password"
+                    class="password-input"
+                    placeholder="Contraseña secreta..."
+                    required
+                    autofocus
+                />
+                <button type="submit" class="login-button">
+                    ✨ Entrar ✨
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

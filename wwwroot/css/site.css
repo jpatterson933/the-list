@@ -1,0 +1,204 @@
+/* Spanish-inspired color palette and styling */
+:root {
+    --tierra-naranja: #D2691E;
+    --rojo-espanol: #C41E3A;
+    --amarillo-sol: #FFD700;
+    --azul-mediterraneo: #1E90FF;
+    --crema: #FFF8DC;
+    --terracota: #E2725B;
+    --verde-oliva: #808000;
+    --blanco: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Palatino', serif;
+    background: linear-gradient(135deg, var(--crema) 0%, #FFE4B5 100%);
+    color: #333;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    background: var(--blanco);
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    border: 3px solid var(--tierra-naranja);
+}
+
+.header {
+    background: linear-gradient(135deg, var(--rojo-espanol) 0%, var(--tierra-naranja) 100%);
+    color: var(--blanco);
+    padding: 40px 30px;
+    text-align: center;
+    border-bottom: 5px solid var(--amarillo-sol);
+}
+
+.header h1 {
+    font-size: 2.8em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 1.2em;
+    font-style: italic;
+    opacity: 0.95;
+}
+
+.section {
+    padding: 30px;
+    border-bottom: 2px solid var(--crema);
+}
+
+.section:last-of-type {
+    border-bottom: none;
+}
+
+.section h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid var(--terracota);
+    color: var(--rojo-espanol);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.completed {
+    background: linear-gradient(to right, #f0fff0 0%, #e8f5e9 100%);
+}
+
+.new-todos {
+    background: linear-gradient(to right, #fff8dc 0%, #ffefd5 100%);
+}
+
+.todos {
+    background: linear-gradient(to right, #fffacd 0%, #ffeaa7 100%);
+}
+
+.shows {
+    background: linear-gradient(to right, #e6f3ff 0%, #dae8fc 100%);
+}
+
+.food {
+    background: linear-gradient(to right, #ffe4e1 0%, #ffd1d1 100%);
+}
+
+.external {
+    background: linear-gradient(to right, #f0e6ff 0%, #e8d5ff 100%);
+}
+
+.list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.list-item {
+    padding: 15px 20px;
+    margin: 10px 0;
+    background: var(--blanco);
+    border-left: 5px solid var(--tierra-naranja);
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+.list-item:hover {
+    transform: translateX(10px);
+    box-shadow: 0 5px 20px rgba(212, 105, 30, 0.3);
+    border-left-color: var(--rojo-espanol);
+}
+
+.completed .list-item {
+    border-left-color: var(--verde-oliva);
+    opacity: 0.85;
+}
+
+.completed .list-item::before {
+    content: "✔️ ";
+    color: var(--verde-oliva);
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.new-todos .list-item {
+    border-left-color: var(--amarillo-sol);
+}
+
+.todos .list-item {
+    border-left-color: var(--azul-mediterraneo);
+}
+
+.shows .list-item {
+    border-left-color: var(--azul-mediterraneo);
+}
+
+.food .list-item {
+    border-left-color: var(--rojo-espanol);
+}
+
+.external .list-item {
+    border-left-color: var(--terracota);
+}
+
+.footer {
+    background: linear-gradient(135deg, var(--tierra-naranja) 0%, var(--rojo-espanol) 100%);
+    color: var(--blanco);
+    padding: 25px;
+    text-align: center;
+    font-size: 1.3em;
+    font-style: italic;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Decorative elements */
+.section h2::before {
+    content: "";
+    display: inline-block;
+    width: 30px;
+    height: 3px;
+    background: var(--amarillo-sol);
+    margin-right: 10px;
+    vertical-align: middle;
+}
+
+.section h2::after {
+    content: "";
+    display: inline-block;
+    width: 30px;
+    height: 3px;
+    background: var(--amarillo-sol);
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2em;
+    }
+
+    .section {
+        padding: 20px;
+    }
+
+    .section h2 {
+        font-size: 1.5em;
+    }
+
+    .list-item {
+        font-size: 1em;
+        padding: 12px 15px;
+    }
+}

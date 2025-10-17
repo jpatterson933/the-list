@@ -1,0 +1,86 @@
+@model LaAdventuresList.Models.AdventureList
+@{
+    ViewData["Title"] = "Nuestra Lista de Aventuras";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/site.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🌟 Nuestra Lista de Aventuras 🌟</h1>
+            <p class="subtitle">Colección de momentos especiales y aventuras por venir</p>
+        </header>
+
+        <section class="section completed">
+            <h2>✨ Completado ✨</h2>
+            <ul class="list">
+                @foreach (var item in Model.Completed)
+                {
+                    <li class="list-item">@item</li>
+                }
+            </ul>
+        </section>
+
+        <section class="section new-todos">
+            <h2>🎯 Nuevas Aventuras</h2>
+            <ul class="list">
+                @foreach (var item in Model.NewTodos)
+                {
+                    <li class="list-item">@item</li>
+                }
+            </ul>
+        </section>
+
+        <section class="section todos">
+            <h2>📝 Por Hacer</h2>
+            <ul class="list">
+                @foreach (var item in Model.Todos)
+                {
+                    <li class="list-item">@item</li>
+                }
+            </ul>
+        </section>
+
+        <section class="section shows">
+            <h2>🎭 Espectáculos y Entretenimiento</h2>
+            <ul class="list">
+                @foreach (var item in Model.ShowsAndEntertainment)
+                {
+                    <li class="list-item">@item</li>
+                }
+            </ul>
+        </section>
+
+        <section class="section food">
+            <h2>🍷 Comida y Bebida</h2>
+            <ul class="list">
+                @foreach (var item in Model.Food)
+                {
+                    <li class="list-item">@item</li>
+                }
+            </ul>
+        </section>
+
+        <section class="section external">
+            <h2>✈️ Aventuras Externas</h2>
+            <ul class="list">
+                @foreach (var item in Model.External)
+                {
+                    <li class="list-item">@item</li>
+                }
+            </ul>
+        </section>
+
+        <footer class="footer">
+            <p>Con amor y aventuras 💕</p>
+        </footer>
+    </div>
+</body>
+</html>
