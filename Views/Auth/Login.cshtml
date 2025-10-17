@@ -1,142 +1,223 @@
 @{
-    ViewData["Title"] = "Entrada Secreta";
+    ViewData["Title"] = "Secret Entry";
 }
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Secure login portal for LA Adventures List">
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/site.css">
     <style>
-        .login-container {
+        .authentication-page {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 1.25rem;
         }
 
-        .login-box {
-            background: white;
-            padding: 50px 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            border: 3px solid var(--tierra-naranja);
-            max-width: 450px;
+        .authentication-card {
+            background: #FEFAF5;
+            padding: 3rem 2.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 0.625rem 2.5rem rgba(80, 46, 27, 0.15);
+            border: 0.1875rem solid var(--burnt-orange);
+            max-width: 28rem;
             width: 100%;
+        }
+
+        .authentication-card-header {
             text-align: center;
+            margin-bottom: 2rem;
         }
 
-        .login-title {
-            color: var(--rojo-espanol);
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        .authentication-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            line-height: 1;
         }
 
-        .login-subtitle {
-            color: var(--tierra-naranja);
-            font-size: 1.2em;
-            margin-bottom: 30px;
-            font-style: italic;
+        .authentication-title {
+            color: var(--russet);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            line-height: 1.2;
         }
 
-        .login-form {
+        .authentication-description {
+            color: var(--golden-brown);
+            font-size: 1.125rem;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .authentication-form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 1.5rem;
         }
 
-        .password-input {
-            padding: 15px 20px;
-            border: 2px solid var(--tierra-naranja);
-            border-radius: 8px;
-            font-size: 1.1em;
+        .form-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-field-label {
+            color: var(--russet);
+            font-size: 1rem;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .form-field-input {
+            padding: 0.875rem 1rem;
+            border: 0.125rem solid var(--burnt-orange);
+            border-radius: 0.5rem;
+            font-size: 1rem;
             font-family: 'Georgia', serif;
-            transition: all 0.3s ease;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            background: #FFFFFF;
+            color: #3d3028;
         }
 
-        .password-input:focus {
+        .form-field-input:focus {
             outline: none;
-            border-color: var(--rojo-espanol);
-            box-shadow: 0 0 10px rgba(196, 30, 58, 0.3);
+            border-color: var(--golden-brown);
+            box-shadow: 0 0 0 0.1875rem rgba(153, 101, 21, 0.2);
         }
 
-        .login-button {
-            padding: 15px 30px;
-            background: linear-gradient(135deg, var(--rojo-espanol) 0%, var(--tierra-naranja) 100%);
-            color: white;
+        .form-field-input:focus-visible {
+            outline: 0.125rem solid var(--golden-brown);
+            outline-offset: 0.125rem;
+        }
+
+        .submit-button {
+            padding: 0.875rem 1.5rem;
+            background: linear-gradient(135deg, var(--russet) 0%, var(--burnt-orange) 100%);
+            color: var(--warm-cream);
             border: none;
-            border-radius: 8px;
-            font-size: 1.2em;
-            font-weight: bold;
+            border-radius: 0.5rem;
+            font-size: 1.125rem;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             font-family: 'Georgia', serif;
+            min-height: 2.75rem;
         }
 
-        .login-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(196, 30, 58, 0.4);
+        .submit-button:hover {
+            transform: translateY(-0.125rem);
+            box-shadow: 0 0.375rem 1.25rem rgba(128, 70, 27, 0.3);
         }
 
-        .login-button:active {
+        .submit-button:active {
             transform: translateY(0);
         }
 
-        .error-message {
-            color: var(--rojo-espanol);
-            background: #ffe4e1;
-            padding: 15px;
-            border-radius: 8px;
-            border: 2px solid var(--rojo-espanol);
-            font-weight: bold;
-            animation: shake 0.5s;
+        .submit-button:focus-visible {
+            outline: 0.125rem solid var(--golden-brown);
+            outline-offset: 0.125rem;
         }
 
-        @@keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-10px); }
-            75% { transform: translateX(10px); }
+        .error-notification {
+            color: #8B2E1F;
+            background: #F8DDD7;
+            padding: 0.875rem 1rem;
+            border-radius: 0.5rem;
+            border-left: 0.25rem solid #C41E3A;
+            font-weight: 500;
+            animation: slideInFromTop 0.3s ease-out;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
-        .lock-icon {
-            font-size: 3em;
-            margin-bottom: 20px;
+        .error-notification-icon {
+            flex-shrink: 0;
+        }
+
+        @@keyframes slideInFromTop {
+            from {
+                opacity: 0;
+                transform: translateY(-0.625rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @@media (max-width: 48rem) {
+            .authentication-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .authentication-title {
+                font-size: 1.75rem;
+            }
+
+            .authentication-description {
+                font-size: 1rem;
+            }
+        }
+
+        @@media (prefers-reduced-motion: reduce) {
+            .submit-button:hover {
+                transform: none;
+            }
+
+            .error-notification {
+                animation: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="login-container">
-        <div class="login-box">
-            <div class="lock-icon">🔐</div>
-            <h1 class="login-title">Entrada Secreta</h1>
-            <p class="login-subtitle">Por favor, ingresa la contraseña</p>
+    <main class="authentication-page">
+        <section class="authentication-card" aria-labelledby="authentication-title">
+            <header class="authentication-card-header">
+                <span class="authentication-icon" role="img" aria-label="Lock icon">🔐</span>
+                <h1 id="authentication-title" class="authentication-title">Secret Entry</h1>
+                <p class="authentication-description">Please enter your password to continue</p>
+            </header>
 
             @if (ViewBag.Error)
             {
-                <div class="error-message">
-                    ❌ Contraseña incorrecta. Inténtalo de nuevo.
+                <div class="error-notification" role="alert" aria-live="assertive">
+                    <span class="error-notification-icon" role="img" aria-label="Error">❌</span>
+                    <span>Incorrect password. Please try again.</span>
                 </div>
             }
 
-            <form class="login-form" method="post" action="/auth/authenticate">
-                <input
-                    type="password"
-                    name="password"
-                    class="password-input"
-                    placeholder="Contraseña secreta..."
-                    required
-                    autofocus
-                />
-                <button type="submit" class="login-button">
-                    ✨ Entrar ✨
+            <form class="authentication-form" method="post" action="/auth/authenticate" aria-label="Login form">
+                <div class="form-field">
+                    <label for="password-field" class="form-field-label">
+                        Password
+                    </label>
+                    <input
+                        id="password-field"
+                        type="password"
+                        name="password"
+                        class="form-field-input"
+                        placeholder="Enter your password"
+                        required
+                        autofocus
+                        aria-required="true"
+                        aria-describedby="@(ViewBag.Error ? "error-message" : "")"
+                        autocomplete="current-password"
+                    />
+                </div>
+                <button type="submit" class="submit-button">
+                    Enter
                 </button>
             </form>
-        </div>
-    </div>
+        </section>
+    </main>
 </body>
 </html>
